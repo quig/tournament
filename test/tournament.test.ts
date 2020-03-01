@@ -65,14 +65,13 @@ describe('Test if the tournament behaves as expected', () => {
 
 
     /**
- * a vicious Swordsman is a Swordsman that put poison on his weapon. poison add
- * 20 damages on two first blows a veteran Highlander goes Berserk once his hit
- * points are under 30% of his initial total once Berserk, he doubles his
- * damages.
- * 
- * Note: Obviously a swordsman equipping an axe and a buckler remove the sword 
- * (standard human have usually only 2 arms)
- */
+     * a vicious Swordsman is a Swordsman that put poison on his weapon. poison add
+     * 20 damages on two first blows a veteran Highlander goes Berserk once his hit
+     * points are under 30% of his initial total once Berserk, he doubles his
+     * damages.
+     * Note: Obviously a swordsman equipping an axe and a buckler remove the sword 
+     * (standard human have usually only 2 arms)
+     */
     test('Vicious swordsman with an axe and a buckler should beat a veteran highlander', () => {
         //given
         const swordsman = new Swordsman("Vicious").equip("axe").equip("buckler").equip("armor")
