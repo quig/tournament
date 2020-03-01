@@ -31,8 +31,8 @@ describe('Test if the tournament behaves as expected', () => {
 
 
     /**
-     * a buckler cancel all the damages of a blow, one time out of two a buckler is
-     * destroyed after blocking 3 blow from an axe
+     * a buckler cancel all the damages of a blow, one time out of two.
+     * A buckler is destroyed after blocking 3 blow from an axe
      */
     test('Viking with buckler should beat swordsman with buckler', () => {
         //given
