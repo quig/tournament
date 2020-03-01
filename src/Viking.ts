@@ -3,7 +3,7 @@ export class Viking {
         return 0
     }
 
-    equip(equipment: String) {
+    equip(equipment: string) {
         return this
     }
 }

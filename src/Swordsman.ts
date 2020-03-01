@@ -1,11 +1,11 @@
 export class Swordsman {
-    constructor(type?: String) { }
+    constructor(type?: string) { }
 
     hitPoints() {
         return 0
     }
 
-    equip(equipment: String) {
+    equip(equipment: string) {
         return this
     }
 

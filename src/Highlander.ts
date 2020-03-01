@@ -1,5 +1,5 @@
 export class Highlander {
-    constructor(type?: String) { }
+    constructor(type?: string) { }
 
     hitPoints() {
         return 0
