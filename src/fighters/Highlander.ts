@@ -1,11 +1,14 @@
 import { AbstractFighter } from "./AbstractFighter";
 
 export class Highlander extends AbstractFighter {
-    type: String
-    constructor(type?: String) {
+    type?: string
+    constructor(type?: string) {
         super()
         this.lifePoints = 100
-        this.type = type ? type : ""
+    }
+
+    weapon() {
+        return "great sword"
     }
 
     damage() {
