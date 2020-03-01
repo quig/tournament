@@ -4,11 +4,9 @@ export class Buckler {
     parry(weapon: string): boolean {
         if (this.state === 0)
             return false
-        if (weapon === "axe")
+        if (!this.hasParred && weapon === "axe")
             if (this.state > 0) this.state--
-        if (this.hasParred)
-            return this.hasParred = false
-        else
-            return this.hasParred = true
+        this.hasParred = !this.hasParred
+        return this.hasParred
     }
 }
