@@ -1,33 +1,25 @@
-import { AbstractFighter } from "./AbstractFighter";
+import { Fighter } from "./Fighter";
 import { Buckler } from "../items/Buckler";
+import { Armor } from "../items/Armor";
+import { Sword } from "../items/Sword";
+import { Axe } from "../items/Axe";
+import { Weapon } from "../items/Weapon";
 
-export class Swordsman extends AbstractFighter {
-    equipements: Set<any> = new Set()
+export class Swordsman extends Fighter {
     type?: string
-    buckler?: Buckler
     constructor(type?: string) {
         super()
         this.lifePoints = 100
-    }
-
-    weapon() {
-        return "sword"
-    }
-
-    parry(weapon: string) {
-        if (this.buckler)
-            return this.buckler.parry(weapon)
-        return false
-    }
-
-    damage() {
-        return 5
+        this.weapon = new Sword
     }
 
     equip(equipment: string) {
         if (equipment === "buckler")
-            this.buckler = new Buckler()
-        this.equipements.add(equipment)
+            this.buckler = new Buckler
+        if (equipment === "armor")
+            this.armor = new Armor
+        if (equipment === "axe")
+            this.weapon = new Axe
         return this
     }
 }

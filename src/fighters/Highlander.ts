@@ -1,17 +1,11 @@
-import { AbstractFighter } from "./AbstractFighter";
+import { Fighter } from "./Fighter";
+import { GreatSword } from "../items/GreatSword";
 
-export class Highlander extends AbstractFighter {
+export class Highlander extends Fighter {
     type?: string
     constructor(type?: string) {
         super()
-        this.lifePoints = 100
-    }
-
-    weapon() {
-        return "great sword"
-    }
-
-    damage() {
-        return 12
+        this.lifePoints = 150
+        this.weapon = new GreatSword
     }
 }
