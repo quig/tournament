@@ -2,9 +2,10 @@ import { DeadManError } from "../error/DeadManError";
 import { Armor } from "../items/Armor";
 import { Weapon } from "../items/Weapon";
 import { Sword } from "../items/Sword";
+import { GreatSword } from "../items/GreatSword";
 import { Buckler } from "../items/Buckler";
 
-export class Fighter {
+export abstract class Fighter {
     lifePoints: number = 0
     weapon: Weapon = new Sword
     armor?: Armor
@@ -34,8 +35,16 @@ export class Fighter {
     }
 
     attack(fighter: any) {
+        //attack
+        if (this.weapon instanceof GreatSword && this.weapon.fatigue === 0) {
+            this.weapon.rest()
+            return;
+        }
+        const damage = this.giveDamage()
+        //defense
         if (!fighter.parry(this.getWeapon()))
-            fighter.takeDamage(this.giveDamage())
+            fighter.lifePoints = fighter.takeDamage(damage)
+        //end turn
         if (fighter.lifePoints <= 0) throw new DeadManError("he is dead")
     }
 
@@ -45,8 +54,8 @@ export class Fighter {
     }
 
     takeDamage(damage: number) {
-        let points = this.armor ? this.hitPoints() - this.armor.absorb() - damage
+        let points = this.armor ? this.hitPoints() - (damage - this.armor.absorb())
             : this.hitPoints() - damage
-        this.lifePoints = Math.max(points, 0)
+        return Math.max(points, 0)
     }
 }
