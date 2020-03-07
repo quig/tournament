@@ -1,7 +1,5 @@
 import { Weapon } from "./Weapon";
 
 export class Axe extends Weapon {
-    damage() {
-        return 6
-    }
+    damage = 6
 }

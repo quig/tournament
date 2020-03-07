@@ -6,8 +6,8 @@ import { GreatSword } from "../items/GreatSword";
 import { Buckler } from "../items/Buckler";
 
 export abstract class Fighter {
-    lifePoints: number = 0
-    weapon: Weapon = new Sword
+    abstract lifePoints: number
+    abstract weapon: Weapon
     armor?: Armor
     buckler?: Buckler
     getWeapon() {
@@ -49,8 +49,8 @@ export abstract class Fighter {
     }
 
     giveDamage() {
-        return this.armor ? this.getWeapon().damage() - this.armor.buffer() :
-            this.getWeapon().damage()
+        return this.armor ? this.getWeapon().inflicts() - this.armor.nerf() :
+            this.getWeapon().inflicts()
     }
 
     takeDamage(damage: number) {

@@ -1,5 +1,5 @@
 export class Armor {
-    buffer() {
+    nerf() {
         return 1
     }
     absorb() {
