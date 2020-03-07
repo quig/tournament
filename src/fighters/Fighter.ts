@@ -1,8 +1,6 @@
 import { DeadManError } from "../error/DeadManError";
 import { Armor } from "../items/Armor";
 import { Weapon } from "../items/Weapon";
-import { Sword } from "../items/Sword";
-import { GreatSword } from "../items/GreatSword";
 import { Buckler } from "../items/Buckler";
 
 export abstract class Fighter {
@@ -10,9 +8,6 @@ export abstract class Fighter {
     abstract weapon: Weapon
     armor?: Armor
     buckler?: Buckler
-    getWeapon() {
-        return this.weapon
-    }
 
     hitPoints() {
         return this.lifePoints
@@ -24,8 +19,7 @@ export abstract class Fighter {
         return false
     }
 
-
-    engage(fighter: any) {
+    engage(fighter: Fighter) {
         try {
             while (1) {
                 this.attack(fighter)
@@ -34,26 +28,25 @@ export abstract class Fighter {
         } catch (e) { }
     }
 
-    attack(fighter: any) {
-        //attack
-        if (this.weapon instanceof GreatSword && this.weapon.fatigue === 0) {
-            this.weapon.rest()
-            return;
-        }
-        const damage = this.giveDamage()
-        //defense
-        if (!fighter.parry(this.getWeapon()))
-            fighter.lifePoints = fighter.takeDamage(damage)
+    attack(fighter: Fighter) {
+        try {
+            //attack
+            const damage = this.giveDamage()
+            //defense
+            if (!fighter.parry(this.weapon))
+                fighter.lifePoints = fighter.takeDamage(damage)
+        } catch (e) { } //catch when the attacker is unable to attack
+
         //end turn
         if (fighter.lifePoints <= 0) throw new DeadManError("he is dead")
     }
 
-    giveDamage() {
-        return this.armor ? this.getWeapon().inflicts() - this.armor.nerf() :
-            this.getWeapon().inflicts()
+    giveDamage(): number {
+        return this.armor ? this.weapon.inflicts() - this.armor.nerf() :
+            this.weapon.inflicts()
     }
 
-    takeDamage(damage: number) {
+    takeDamage(damage: number): number {
         let points = this.armor ? this.hitPoints() - (damage - this.armor.absorb())
             : this.hitPoints() - damage
         return Math.max(points, 0)
