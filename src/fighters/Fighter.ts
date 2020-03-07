@@ -25,7 +25,7 @@ export abstract class Fighter {
                 this.attack(fighter)
                 fighter.attack(this)
             }
-        } catch (e) { }
+        } catch (e) { } // catch DeadManError, end of the duel
     }
 
     attack(fighter: Fighter) {
