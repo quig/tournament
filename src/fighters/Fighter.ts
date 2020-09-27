@@ -38,7 +38,10 @@ export abstract class Fighter {
         } catch (e) { } //catch when the attacker is unable to attack
 
         //end turn
-        if (fighter.lifePoints <= 0) throw new DeadManError("he is dead")
+        if (fighter.lifePoints <= 0) {
+            console.log('☠️ '+fighter.constructor.name + ' is dead! ☠️')
+            throw new DeadManError("he is dead")
+        }
     }
 
     giveDamage(): number {
